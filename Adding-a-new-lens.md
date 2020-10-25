@@ -1,4 +1,4 @@
-1. Before changing the C++ code to recognise a lens, please consider using the "Configuration File" as documented in the man page: [https://exiv2.org/manpage.html](https://exiv2.org/manpage.html)
+1. Before changing the C++ code to recognise a lens, please consider using the **Configuration File** as documented in the man page: [https://exiv2.org/manpage.html](https://exiv2.org/manpage.html)
 
 2. We will not accept a change to the C++ code without a test image.  The procedure to create a test file is documented here: [https://github.com/Exiv2/exiv2/wiki/Create-test-file](https://github.com/Exiv2/exiv2/wiki/Create-test-file)
 
