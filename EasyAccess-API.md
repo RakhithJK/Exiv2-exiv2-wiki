@@ -2,7 +2,7 @@ Exiv2 supports an EasyAccess API to simplify reading Exif Metadata.
 
 **Overview**
 
-you can use the EasyAccess to search the metadata for the "most likely" key.  For example, to report the value of "WhiteBalance", the following code is sufficient:
+You can use the EasyAccess API to search the metadata for the "most likely" key.  For example, to report the value of "WhiteBalance", the following code is sufficient:
 
 ```
 Exiv2::ExifData::const_iterator metadata = Exiv2::whiteBalance(exifData);
