@@ -65,12 +65,12 @@ This output is generated in src/actions.cpp with the following code:
 
 ```bash
 $ cd <exiv2dir>
-$ $ grep White src/actions.cpp 
+$ grep White src/actions.cpp 
         printTag(exifData, Exiv2::whiteBalance      , _("White balance")                                );
 1507 rmills@rmillsmbp:~/gnu/github/exiv2/kmilos $
 ```
 
-`Exiv2::whiteBalance()` is declared in include/exiv2/easyaccess.hpp as follows:
+The EasyAccess selector function: `Exiv2::whiteBalance()` is declared in include/exiv2/easyaccess.hpp as follows:
 
 ```hpp
     //! Return the white balance setting
@@ -117,34 +117,34 @@ And implemented in src/easyaccess.cpp as follows:
 This code is not in the Exiv2 library.  The code is in the exiv2 command-line application and defined in src/actions.cpp:
 
 ```cpp
-    int Print::printTag(const Exiv2::ExifData& exifData,
-                        EasyAccessFct easyAccessFct,
-                        const std::string& label,
-                        EasyAccessFct easyAccessFctFallback /* =NULL*/ ) const
+int Print::printTag(const Exiv2::ExifData& exifData,
+                    EasyAccessFct easyAccessFct,
+                    const std::string& label,
+                    EasyAccessFct easyAccessFctFallback /* =NULL*/ ) const
+{
+    int rc = 0;
+    if (!label.empty()) {
+        printLabel(label);
+    }
+    Exiv2::ExifData::const_iterator md = easyAccessFct(exifData);
+    if (md != exifData.end()) {
+        md->write(std::cout, &exifData);
+        rc = 1;
+    }
+    else if (NULL != easyAccessFctFallback)
     {
-        int rc = 0;
-        if (!label.empty()) {
-            printLabel(label);
-        }
-        Exiv2::ExifData::const_iterator md = easyAccessFct(exifData);
+        md = easyAccessFctFallback(exifData);
         if (md != exifData.end()) {
             md->write(std::cout, &exifData);
             rc = 1;
         }
-        else if (NULL != easyAccessFctFallback)
-        {
-            md = easyAccessFctFallback(exifData);
-            if (md != exifData.end()) {
-                md->write(std::cout, &exifData);
-                rc = 1;
-            }
-        }
-        if (!label.empty()) std::cout << std::endl;
-        return rc;
-    } // Print::printTag
+    }
+    if (!label.empty()) std::cout << std::endl;
+    return rc;
+} // Print::printTag
 ``` 
 
-The EasyAccess API searches the array of keys to determine the "best" metadata key to be used:
+The EasyAccess API searches the array of keys to determine the first metadata key to be used:
 
 ```cpp
 static const char* keys[] = {
@@ -166,13 +166,21 @@ To explain how and why this is useful requires an understanding of the structure
 When we examine WhiteBalance in Stonehenge.jpg:
 
 ```
-$ exiv2 -pe --grep  WhiteBalance http://clanmills.com/Stonehenge.jpg
+$ exiv2 --grep  WhiteBalance$ http://clanmills.com/Stonehenge.jpg
 Exif.Nikon3.WhiteBalance                     Ascii      13  AUTO        
-Exif.Photo.WhiteBalance                      Short       1  0
+Exif.Photo.WhiteBalance                      Short       1  Auto
 $ 
 ```
 
 We see that WhiteBalance is stored in the metadata in two locations.  In Exif.Photo.WhiteBalance (in the Exif IFD), it is defined as a Short (16 bit signed integer) with a value of 0.  In Exif.Nikon3.WhiteBalance, Nikon has stored it as a 13 byte ascii string with value "AUTO\0".  The EasyAccess API returns the "Exif.Nikon3.WhiteBalance" value because it is defined in the keys before "Exif.Photo.WhiteBalance".
+
+The order of data presented by Exiv2 is determined by the order in which tags are located in the image.  The order of the MetaData keys in the selector determines the order of "preference" of the selector.  The selector returns the first key located in the ExifData array.
+
+**EasyAccess Selector Functions in Exiv2 v0.27.4 and later**
+
+| a-e | e-f | i-m | m-s | s-w |
+|:--  |:--  |:--  |:--  |:--  |
+| afPoint<br>apertureValue<br>brightnessValue<br>contrast<br>dateTimeOriginal<br>exposureBiasValue<br>exposureIndex | exposureMode<br>exposureTime<br>flash<br>flashBias<br>flashEnergy<br>fNumber<br>focalLength | imageQuality<br>isoSpeed<br>lensName<br>lightSource<br>macroMode<br>make<br>maxApertureValue |meteringMode<br>model<br>orientation<br>saturation<br>sceneCaptureType<br>sceneMode<br>sensingMethod | serialNumber<br>sharpness<br>shutterSpeedValue<br>subjectArea<br>subjectDistance<br>whiteBalance<br>&nbsp; |
 
 **Comment concerning printTag**
 
@@ -194,4 +202,4 @@ This code reports _**Exposure Time**_ using `Exiv2::exposureTime()` and if not f
 | Scope      | Data | Contributor |
 |:--         |:--   |:--          |
 | Invention  | 2009 |  Carsten Pfeiffer pfeiffer@kde.org |
-| Additional EasyAccess selectorFunctions<br>Documentation | 2020 |  @kmilos and @clanmills |
+| Additional selectorFunctions<br>Documentation | 2020 | Milo&scaron; Komar&ccaron;evi&cacute; [@kmilos](https://github.com/kmilos) and Robin Mills [@clanmills](https://github.com/clanmills) |
