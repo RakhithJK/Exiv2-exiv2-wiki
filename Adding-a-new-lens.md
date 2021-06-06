@@ -8,8 +8,6 @@
 
 5. Run the test suite before submitting your PR.  This is documented in README.md.
 
-6. Until we release Exiv2 0.28, we will have two development branches - '0.27-maintenance' and 'master'. Please focus your PR on 0.27-maintenance and it will be ported to 'master'.  Once Exiv2 v0.28 ships (mid 2021), please focus your PR on 'master'.  It will not be back-ported to 0.27-maintenance.
-
 **Adding a new Nikon Lens**
 
 The code for nikon lens's is in src/nikonmn_int.cpp:
