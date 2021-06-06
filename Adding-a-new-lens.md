@@ -2,7 +2,7 @@
 
 2. The code required to recognise a new lens is different for each manufacturer.  I've documented the approach for Nikon lenses below.  If you update the procedure for another manufacturers, please let me know and I will update this wiki page. 
 
-3. We will not accept a change to the C++ code without a test image.  The procedure to create a test file is documented here: [https://github.com/Exiv2/exiv2/wiki/Create-test-file](https://github.com/Exiv2/exiv2/wiki/Create-test-file)
+3. We will not accept a change to the C++ code without a test image.  The procedure to create a test file is documented here: [Creating a test file](https://github.com/Exiv2/exiv2/wiki/Creating-a-test-file)
 
 4. Add a python script to test your change using your test image. Here's an example from a user: [https://github.com/Exiv2/exiv2/issues/1368.](https://github.com/Exiv2/exiv2/issues/1368). I explained the test harness to him here: https://github.com/Exiv2/exiv2/issues/1368#issuecomment-711407187
 
