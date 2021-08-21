@@ -18,7 +18,10 @@ So, Exiv2 is GPLv2.0 only and you must comply with the implied obligations.
 
 ***
 
-Somebody said there is a legal way in which you can use Exiv2 and be free from GPLv2.0 and that is to host the code on a server and access the code remotely.  You’ll have to verify that this is true and legal.
+Somebody said there is a legal way in which you can use Exiv2 and be free from GPLv2.0 and that is to host the code on a server and access the code remotely.  You should consider extracting the metadata from an image and send only the metadata to the server.  You’ll want to do that to reduce the band-width.  A typical image is about 10mb, of which the metadata is usually about 5k-10k.  You’ll find the code in Robin's book as a useful starting point.   Image Metadata and Exiv2 Architecture:  https://clanmills.com/exiv2/book
 
-If you go down that road, you should consider extracting the metadata from an image and send only the metadata to the server.  You’ll want to do that to reduce the band-width.  A typical image is about 10mb, of which the metadata is usually about 5k-10k.  You’ll find the code in Robin's book as a useful starting point.   Image Metadata and Exiv2 Architecture:  https://clanmills.com/exiv2/book
+Another suggestion is that executing the exiv2 command-line may be legal use of open source and free you from the obligations of GPLv2. So we suggest you develop/test/document an option —socket n for the exiv2 application to launch and wait forever for commands to arrive on the socket. Exiv2 is fast (100+ images/second). This will be very fast.
+
+If you want to use any of these possibilities, you’ll have to verify that using exiv2 as described is legal.
+
 
