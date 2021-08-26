@@ -1,0 +1,1 @@
+![Exiv2 Logo](https://exiv2.org/include/exiv2-logo-big.png)
