@@ -4,7 +4,7 @@ There has been a very vigorous discussion in Team Exiv2 and with the Open Source
 
 README.md contains the following section:
 
-_### 2.19 Support for bmff files (CR3, HEIF, HEIC, and AVIF)_
+_**2.19 Support for bmff files (CR3, HEIF, HEIC, and AVIF)**_
 
 _**Attention is drawn to the possibility that bmff support may be the subject of patent rights. _Exiv2 shall not be held responsible for identifying any or all such patent rights.  Exiv2 shall not be held responsible for the legal consequences of the use of this code_.**_
 
