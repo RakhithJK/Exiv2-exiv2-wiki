@@ -1,4 +1,4 @@
-There has been a very vigorous discussion in Team Exiv2 and with the Open Source Community about BMFF support and the possibility of patent enfrigement.  Team Exiv2 does not accept legal responsibility for enabling and using BMFF support.
+There has been a very vigorous discussion in Team Exiv2 and with the Open Source Community about BMFF support and the possibility of patent enfrigement.  Exiv2 does not accept legal responsibility for enabling and using BMFF support.
 
 ![BMFF Support](https://user-images.githubusercontent.com/529982/131215766-adf04e0e-07a7-4df3-820c-e07b82fe4cf2.jpg)
 
