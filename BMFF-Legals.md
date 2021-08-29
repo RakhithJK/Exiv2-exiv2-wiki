@@ -18,4 +18,6 @@ _The return value from `enableBMFF()` is true if the library has been build with
 
 _Applications may wish to provide a preference setting to enable bmff support and thereby place the responsibility for the use of this code with the user of the application._
 
-**Caution:** The API for v1.00 (on branch 'main') is the same, however the build default is -DEXIV2_ENABLE_BMFF=On and enableBMFF(true) has effectively been set.  Applications using v1.00 can disable BMFF support at run-time by calling `Exiv2::enableBMFF(false);`
+**Caution:** The API for v1.00 (on branch 'main') is the same as 0.27.4 (and later), however the build default is `-DEXIV2_ENABLE_BMFF=On` and revealed to the compiler by EXV_ENABLE_BMFF (in exv_conf.h).  At run-time, library initialisation is equivalent to calling `Exiv2::enableBMFF(true);`.
+
+**Summary:** Applications can disable run-time BMFF support by calling `Exiv2::enableBMFF(false);` for any version of Exiv2 (v0.27.4 and later).
