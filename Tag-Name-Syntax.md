@@ -14,9 +14,9 @@ Exif Metadata is stored in a Tiff formatted sub-file of the image.  The arrangem
 
 ![Tiff File Layout](https://user-images.githubusercontent.com/529982/131124453-afc30d02-c845-42a3-9a84-299b569b712c.png)
 
-**IPTC** tags are simpler.  IPTC is two level structure.  There are 9 "sections" such as Envelope and Application2 for which the spec defines the tags.  The Exiv2 Family.Group.Tag maps to Iptc.Section.Tag.  For example:  Iptc.Envelope.ModelVersion and Iptc.Application2.Caption.
+**IPTC** tags are simpler.  IPTC is two level structure.  There are 9 "sections" such as Envelope and Application2 for which the spec defines the tags.  The syntax Family.Group.Tag maps to Iptc.Section.Tag.  For example:  Iptc.Envelope.ModelVersion and Iptc.Application2.Caption.
 
-XMP is represented in XMP and is therefore a heirarchical tree.
-The Exiv2 Family.Group.Tag maps to Xmp.Namespace.Tag.  For example: Xmp.xmp.ModifyDate and Xmp.dc.description.
+XMP is represented in XML and is therefore a heirarchical tree.
+The syntax Family.Group.Tag maps to Xmp.Namespace.Tag.  For example: Xmp.xmp.ModifyDate and Xmp.dc.description.
 Because XMP is both extensible and a tree, the tags can contain arrays (XmpSeq) and objects (XmpBag) of arbitrary complexity.  The syntax of XMP tags is handled by (and documented by) the Adobe XMP SDK.
 
