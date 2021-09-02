@@ -1,4 +1,4 @@
-The TagName syntax is a 3 part tuple in the syntax _**Family.Group.Tag**_.  For Example _**Exif.Image.Make**_.  There are three families: Exif, Iptc and Xmp.
+The TagName syntax is a 3 part tuple in the syntax _**Family.Group.Tag**_.  For example: Exif.Image.Make.  There are three families: Exif, Iptc and Xmp.
 
 The **Exif** tags are in a hierarchy.  The _**Group**_ indicates the IFD in which the tag was found.  At the top are tags defined in the TIFF/EP specification and are named: Exif.Image.Tag.
 
