@@ -13,6 +13,15 @@
 The code for nikon lens's is in src/nikonmn_int.cpp:
 
 ```cpp
+// lid:   LensIDNumber
+// stps:  LensFStops
+// focs:  MinFocalLength
+// focl:  MaxFocalLength
+// aps:   MaxApertureAtMinFocal
+// apl:   MaxApertureAtMaxFocal
+// lfw:   MCUVersion
+// ltype: LensType
+// The tcinfo, dblid and mid fields are being ignored.
 static const struct FMntLens {unsigned char lid,stps,focs,focl,aps,apl,lfw, ltype, tcinfo, dblid, mid; const char *manuf, *lnumber, *lensname;}
 fmountlens[] = {
 ....
@@ -34,7 +43,16 @@ fmountlens[] = {
 {0,0,0,0,0,0,0,0,0,0,0, NULL, NULL, NULL}
 };
 ```
-There are 11 metadata items/lens that must match your lens.  You can obtain those values from a photo taken with the lens.  This is discussed in the issues referenced in the code.  We also require a (simple) python test file when we update C++ lens recognition code.
+
+There are 11 metadata items/lens that must match your lens.  You can obtain those values from a photo taken with the lens of interest.  This is discussed in the issues referenced in the code.  We also require a (simple) python test file when we update C++ lens recognition code.
+
+Please note that all fields except `LensType` have to be looked up in the `Exif.NikonLd*` prefix and not other `Exif.Nikon*` prefixes. For example: for modern Nikon bodies with modern lenses, there will be both a `Exif.Nikon3.LensFStops` and a `Exif.NikonLd3.LensFStops` entry in the EXIF data. You are looking for `Exif.NikonLd3.LensFStops`-
+
+In most cases the necessary hex values should be extracted from a test image using the following command:
+
+```bash
+exiv2 -ph -g NikonLd3.LensIDNumber -g NikonLd3.LensFStops -g NikonLd3.MinFocalLength -g NikonLd3.MaxFocalLength -g NikonLd3.MaxApertureAtMinFocal -g NikonLd3.MaxApertureAtMaxFocal -g NikonLd3.MCUVersion -g Nikon3.LensType test.NEF
+```
 
 **Summary of new lens PR**
 
